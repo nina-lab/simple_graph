@@ -1,26 +1,27 @@
-var obamaHate   = 9923;
-var obamaLove   = 2250;
-var obamaTotal  = obamaHate + obamaLove;
-
-var romneyHate  = 8898;
-var romneyLove  = 1667;
-var romneyTotal = romneyHate + romneyLove;
-
-var totalHate   = obamaHate + romneyHate;
-var totalLove   = obamaLove + romneyLove;
-var tweetsTotal = obamaTotal + romneyTotal;
-
 function main() {
-	$(".bar").each(function(){
-		var thisBar  = $(this).attr("id");
-		var toPrint  = window[thisBar]; // THERE'S OFTEN NOT ROOM TO DISPLAY: " + thisBar.match(/love|hate/i);
-		var maxWidth = $(".max-bar-width").width();
-		var barWidth = window[thisBar] * maxWidth / tweetsTotal;
 
-		$("#" + thisBar).css("width", barWidth).html(toPrint);
-	});
+    var render = function (data) {
+        data.ObamaTotal = parseInt(data.ObamaLove, 10) + parseInt(data.ObamaHate, 10) + "";      
+        data.RomneyTotal = parseInt(data.RomneyLove,10) + parseInt(data.RomneyHate,10) + "";
+        data.totalHate = parseInt(data.ObamaHate,10) + parseInt(data.RomneyHate,10) + "";
+        data.totalLove = parseInt(data.ObamaLove,10) + parseInt(data.RomneyLove,10) + "";
+        data.tweetsTotal = parseInt(data.ObamaTotal,10) + parseInt(data.RomneyTotal,10) + "";
+            
+
+        $(".bar").each(function (){
+            var thisBar  = $(this).attr("id");
+            var toPrint  = data[thisBar]; // THERE'S OFTEN NOT ROOM TO DISPLAY: " + thisBar.match(/love|hate/i);
+            var maxWidth = $(".max-bar-width").width();
+            var barWidth = data[thisBar] * maxWidth / data.tweetsTotal;
+            
+            $("#" + thisBar).css("width", barWidth).html(toPrint);
+        });
+        
+    };
+
+    render({"ObamaHate":"9923","RomneyLove":"1667","RomneyHate":"8898","ObamaLove":"2250"});
 }
 
 $(document).ready(function(){
-	main();
+        main();
 });
