@@ -17,7 +17,9 @@
 
         <script type="text/javascript">
           $(document).ready(function(){
-              main({"ObamaHate":"9923","RomneyLove":"1667","RomneyHate":"8898","ObamaLove":"2250"});
+              var data = $.getJSON("fixtures/09-20-2012", function (data) {
+                  main(data);
+              });
           });     
         </script>
 
