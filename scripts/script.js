@@ -1,4 +1,4 @@
-function main() {
+function main(d) {
 
     var render = function (data) {
         data.ObamaTotal = parseInt(data.ObamaLove, 10) + parseInt(data.ObamaHate, 10) + "";      
@@ -19,9 +19,6 @@ function main() {
         
     };
 
-    render({"ObamaHate":"9923","RomneyLove":"1667","RomneyHate":"8898","ObamaLove":"2250"});
+    render(d);
 }
 
-$(document).ready(function(){
-        main();
-});
